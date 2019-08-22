@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+    <TextView android:id="@+id/new_contact_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:lineSpacingExtra="10sp"
+        android:text="New Actor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/tv_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:hint=" Actor First Name "
+        android:inputType="textAutoComplete|textShortMessage"
+        android:lines="2"
+        android:textColorHint="#616161"
+        android:textColor="#616161"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/tv_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:textColor="#616161"
+        android:hint=" Actor Last Name "
+        android:layout_marginTop="4dp"
+        android:textColorHint="#616161"
+        android:inputType="textAutoComplete|textShortMessage"
+        android:lines="2"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/tv_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:textColor="#616161"
+        android:hint=" Actor Age "
+        android:layout_marginTop="4dp"
+        android:textColorHint="#616161"
+        android:inputType="textAutoComplete|textShortMessage"
+        android:lines="1"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:textColor="#616161"
+        android:hint=" Actor status "
+        android:textColorHint="#616161"
+        android:inputType="textCapSentences|textMultiLine"
+        android:lines="4"
+        android:layout_marginTop="4dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/tv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:textColor="#616161"
+        android:hint=" Actor image "
+        android:textColorHint="#616161"
+        android:layout_marginTop="4dp"
+        android:inputType="textCapSentences|textMultiLine"
+        android:lines="1"
+        android:textSize="16sp" />
+
+</LinearLayout>
