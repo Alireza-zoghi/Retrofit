@@ -1,65 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardElevation="2dp"
-    app:cardCornerRadius="4dp"
-    android:layout_margin="8dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
-        android:id="@+id/parent"
+    <data>
+
+        <variable
+            name="actors"
+            type="com.alirezazoghi.retrofit.model.Actors" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:padding="8dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileImage"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/ic_person"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/age"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toEndOf="@id/profileImage"
-            android:text="alireza"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:background="?selectableItemBackground"
+            android:padding="8dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="21"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/age"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toEndOf="@id/profileImage"
+                android:text="@{actors.fname + ` ` + actors.lname}"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/name"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/profileImage"
-            android:maxLines="4"
-            android:text="description"
-            android:textColor="#AA222222"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{actors.age}"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/profileImage"
+                android:maxLines="4"
+                android:text="@{actors.status}"
+                android:textColor="#AA222222"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_person"
+                android:transitionName="logo"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

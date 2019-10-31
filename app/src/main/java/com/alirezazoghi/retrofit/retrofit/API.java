@@ -1,6 +1,6 @@
-package com.alirezazoghi.retrofit.Retrofit;
+package com.alirezazoghi.retrofit.retrofit;
 
-import com.alirezazoghi.retrofit.Model.Actors;
+import com.alirezazoghi.retrofit.model.Actors;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +17,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 public interface API {
@@ -43,9 +44,6 @@ public interface API {
             // TODO: 8/22/2019 @Multipart
     );
 
-    @POST("edit.php")
-    Call<Actors> editUser(@Body Actors actors);
-
     @FormUrlEncoded
     @GET("users.php")
     Call<Actors> getActorByIdForm(@Field("id") int id);
@@ -60,6 +58,9 @@ public interface API {
     @POST("upload.php")
     Call<String> upload(@Field("fname") String fname, @Field("lname") String lname, @Field("age") String age, @Field("image") String image, @Field("status") String status);
 
-    @GET("a")
-    Call<ResponseBody> downloadFile();
+    @Streaming
+    @GET()
+    Call<ResponseBody> downloadFile(
+            @Url String url
+    );
 }

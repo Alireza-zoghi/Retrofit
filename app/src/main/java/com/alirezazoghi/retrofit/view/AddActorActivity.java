@@ -1,7 +1,8 @@
-package com.alirezazoghi.retrofit.App;
+package com.alirezazoghi.retrofit.view;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,8 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.alirezazoghi.retrofit.app.Application;
+import com.alirezazoghi.retrofit.app.app;
 import com.alirezazoghi.retrofit.R;
+import com.alirezazoghi.retrofit.databinding.ActivityAddActorBinding;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,34 +29,28 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddActorActivity extends AppCompatActivity {
-    private EditText fname, lname, age, description;
-    private ImageView avatar;
+
     private Bitmap bitmap;
     private static final int IMG_REQUEST = 666;
+    private ActivityAddActorBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_actor);
-        fname = findViewById(R.id.tv_name);
-        lname = findViewById(R.id.tv_last_name);
-        age = findViewById(R.id.tv_age);
-        description = findViewById(R.id.tv_description);
-        Button submit = findViewById(R.id.bt_submit);
-        avatar = findViewById(R.id.iv_actor);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_actor);
 
-        avatar.setOnClickListener(new View.OnClickListener() {
+        binding.ivActor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectImage();
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        binding.btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (fname.getText() != null && lname.getText() != null && age.getText() != null && description.getText() != null &&
-                        avatar != null) {
+                if (binding.tvName.getText() != null && binding.tvLastName.getText() != null && binding.tvAge.getText() != null && binding.tvDescription.getText() != null &&
+                        binding.ivActor.getResources() != null) {
                     uploadData();
                 }
             }
@@ -61,11 +60,16 @@ public class AddActorActivity extends AppCompatActivity {
 
     private void uploadData() {
 
-        Application.getAPI().upload(fname.getText().toString().trim(), lname.getText().toString().trim(), age.getText().toString().trim(), imageToString(), description.getText().toString().trim()).enqueue(new Callback<String>() {
+        Application.getAPI().upload(binding.tvName.getText().toString().trim(), binding.tvLastName.getText().toString().trim(), binding.tvAge.getText().toString().trim(), imageToString(), binding.tvDescription.getText().toString().trim()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                app.l(response.toString());
-                finish();
+                if (response.isSuccessful()) {
+                    app.l(response.toString());
+                    finish();
+                } else {
+                    Toast.makeText(AddActorActivity.this, "error on save actor", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
@@ -90,7 +94,7 @@ public class AddActorActivity extends AppCompatActivity {
 
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
-                avatar.setImageBitmap(bitmap);
+                binding.ivActor.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
